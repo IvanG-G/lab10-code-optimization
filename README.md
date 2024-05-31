@@ -2,7 +2,7 @@
 
 ## **JavaScript Snippet:**
 
-```
+```Javascript
   // Inefficient loop handling and excessive DOM manipulation
 function updateList(items) {
   let list = document.getElementById("itemList");
@@ -13,5 +13,21 @@ function updateList(items) {
     list.appendChild(listItem);
   }
 }
-
 ```
+
+```Javascript
+function updateList(items) {
+  const list = document.getElementById("itemList");
+  const fragment = document.createDocumentFragment();
+
+  items.forEach(item => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    fragment.appendChild(listItem);
+  });
+
+  list.textContent = '';
+  list.appendChild(fragment);
+}
+```
+
