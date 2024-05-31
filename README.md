@@ -90,7 +90,7 @@ public List<int> ProcessData(List<int> data) {
     return result;
 }
 ```
-* **Inefficient loops:** Is better to use Parallel for in this case, using for each is unnecesary, sacrificing performance against readability.
+* **Inefficient loops:** Is better to use Parallel for each in this case.
 * **Redundant computations:** result.Add is written two times on the code, we can enhance that to use only one .Add
 * **Excessive memory:** We are not pre-allocating memory, we know the maximum capacity of the list, so we can pre-allocate memory increasing the performance on the code.
 
@@ -98,8 +98,7 @@ public List<int> ProcessData(List<int> data) {
 public List<int> ProcessData(List<int> data) {
     List<int> result = new List<int>(data.Count);
 
-    Parallel.For (int i = 0; i < data.Count; i++) {
-        int d = data[i];
+    Parallel.ForEach(data, d => {
         result.Add(d % 2 == 0 ? d * 2 : d * 3);
     }
     return result;
@@ -109,3 +108,4 @@ public List<int> ProcessData(List<int> data) {
 1. Adding a number to pre-allocate memory, we are sure that our list will not grow further than data.Count, so we can use that to pre-Allocate our memory, giving memory optimization.
 2. Using ternary operator and adding at the same time, ternary operators are more readable, since we can only have if-else we can use them.
 3. Multiplying d by 2 or 3 depending our case, and that result is added to the list directly so we are saving a variable that we could use on memory.
+4. Paralle.ForEach is better than foreach loops, since we are not using the index, we can use forEach to improve the readability.
