@@ -66,3 +66,20 @@ public interface Database{
 1. Refactoring the method loadProducts we can optimize the code, using another method to obtain a list of items directly instead of only 1 item.
 2. Using the interface as an example, we can send them the startIndex, and the number of elements that we need, in this case we will need 100, and then we also send the type of Class that we are retrieving from database, this to ensure we can retrieve multiple entities from database.
 
+
+## **C# Snippet:**
+```C#
+// Unnecessary computations in data processing
+public List<int> ProcessData(List<int> data) {
+    List<int> result = new List<int>();
+    foreach (var d in data) {
+        if (d % 2 == 0) {
+            result.Add(d * 2);
+        } else {
+            result.Add(d * 3);
+        }
+    }
+    return result;
+}
+```
+
